@@ -10,7 +10,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Check if user is already logged in (e.g., on page refresh)
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -35,9 +34,9 @@ const Login = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', data.token); // Store token in localStorage
-        setLoggedIn(true); // Set loggedIn state to true
-        navigate('/home'); // Redirect to Home after login
+        localStorage.setItem('token', data.token);
+        setLoggedIn(true); 
+        navigate('/home'); 
       } else {
         setError(data.error || 'Login failed');
       }
@@ -51,11 +50,10 @@ const Login = () => {
 
   // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Remove token from localStorage
-    setLoggedIn(false); // Set loggedIn state to false
+    localStorage.removeItem('token'); 
+    setLoggedIn(false); 
   };
 
-  // Render login form if not logged in
   return (
     <div className="login-container">
       <h2>Login</h2>

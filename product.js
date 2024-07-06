@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProject, deleteProject } from "./todosclice";
+import { addProject, deleteProject } from "./todoSlice";
 import "./App.css"; 
-import { RxCross1 } from "react-icons/rx";// Import your main CSS file for custom styling
-import SearchProjects from "./seach"; // Import the SearchProjects component
+import { RxCross1 } from "react-icons/rx";
 
-const Todo = () => {
+
+const Product= () => {
   const [projectName, setProjectName] = useState("");
   const [projectPrice, setProjectPrice] = useState("");
-  const [searchTerm, setSearchTerm] = useState(""); // Ensure searchTerm is declared with useState
+
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   const dispatch = useDispatch();
@@ -24,12 +24,7 @@ const Todo = () => {
     dispatch(deleteProject(projectId));
   };
 
-  const handleSearch = () => {
-    const filtered = projects.filter((project) =>
-      project.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProjects(filtered);
-  };
+
 
   const projectsToDisplay = filteredProjects.length ? filteredProjects : projects;
 
@@ -50,13 +45,13 @@ const Todo = () => {
 
   return (
     <div className="todo-container">
-      <center><h1>Product Form</h1></center>
+      <center><h1>Project Form</h1></center>
 
       <div className="input-container">
         <input
           type="text"
           className="input-text"
-          placeholder="Product Name"
+          placeholder="Project Name"
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
         />
@@ -64,7 +59,7 @@ const Todo = () => {
         <input
           type="text"
           className="input-text"
-          placeholder="Product Price"
+          placeholder="Project Price"
           value={projectPrice}
           onChange={(e) => setProjectPrice(e.target.value)}
         />
@@ -76,8 +71,8 @@ const Todo = () => {
         <thead>
           <tr>
             <th>S.No</th>
-            <th>Product Name</th>
-            <th>Product Price</th>
+            <th>Project Name</th>
+            <th>Project Price</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -86,7 +81,7 @@ const Todo = () => {
             projectRows
           ) : (
             <tr>
-              <td colSpan="4" className="no-projects">No projects found.</td>
+              <td className="no-projects">No projects found.</td>
             </tr>
           )}
         </tbody>
@@ -94,5 +89,4 @@ const Todo = () => {
     </div>
   );
 };
-
-export default Todo;
+export default Product;
